@@ -94,3 +94,19 @@ void main() {
 
     display();
 }
+
+/* 
+
+Expected Output
+---
+Enter the number of elements: 6
+Enter the elements
+6 4 3 6 7 6
+The list is: 6 4 3 6 7 6
+Enter the element to be searched for: 4
+Element found.
+Enter the element to be deleted: 6
+Deleted.
+The list is: 4 3 7
+
+*/
