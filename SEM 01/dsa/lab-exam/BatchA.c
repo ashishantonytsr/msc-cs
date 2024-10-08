@@ -1,3 +1,11 @@
+/* 
+Batch 1: Lab-exam program
+Problem:
+    1. Create a linked list reading values from the user.
+    2. Search for an element input by the user.
+    3. Delete all the instances of a given element from the list.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
