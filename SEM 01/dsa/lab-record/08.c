@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h> 
-#include <stdbool.h>
 
 struct node {
     int value;
@@ -67,14 +66,20 @@ struct node* delete(struct node* root, int value) {
     return root;
 }
 
-bool search(struct node* root, int value) {
-    if (root == NULL) return false;
+void search(struct node* root, int value) {
+    if (root == NULL) {
+        printf("%d not found.\n", value);
+        return;
+    }
+    if (root->value == value) {
+        printf("%d found.\n", value);
+        return;
+    }
 
     if (value < root->value)
         search(root->left, value);
     else if (value > root->value)
         search(root->right, value);
-    return true;
 }
 
 void inorder_traversal(struct node* root) {
@@ -101,9 +106,11 @@ void main() {
     inorder_traversal(root);
     printf("\n");
 
-    search(root, 11) ? printf("Item found\n") : printf("Item not found\n");
-    search(root, 18) ? printf("Item found\n") : printf("Item not found\n");
+    search(root, 11);
+    search(root, 18);
 
-    root = delete(root, 8);
+    int del = 8;
+    root = delete(root, del);
+    printf("Binary Search Tree after deleting %d.\n", del);
     inorder_traversal(root);
 }
