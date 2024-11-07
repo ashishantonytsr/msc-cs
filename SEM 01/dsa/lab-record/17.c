@@ -1,17 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define max 20
+int graph[20][20], v;
 int visited[max], queue[max], front = -1, rear = -1;
-
-int graph[20][20] = {
-    {0, 1, 1, 0, 0, 0, 0},
-    {1, 0, 0, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 1},
-    {0, 1, 0, 0, 0, 0, 0},
-    {0, 1, 0, 0, 0, 0, 0},
-    {0, 1, 0, 0, 0, 0, 0},
-    {0, 1, 1, 0, 0, 0, 0},
-}, v = 7;
 
 
 void enqueue(int value) {
@@ -57,5 +49,48 @@ void bfs() {
 }
 
 void main() {
-    bfs();
+    int choice, s, t;
+
+    printf("Enter the number of vertices: ");
+    scanf("%d", &v);
+
+    // initialize every element in graph as 0
+    for (int i = 0; i < v; i++)
+        for (int j = 0; j < v; j++)
+            graph[i][j] = 0;
+
+    while (1) {
+        printf("\n\t1. Add edge\t2. Remove edge\t3. View Graph\t4. BFS\t5. Exit\n-> ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printf("Enter two vertices to create an edge: ");
+            scanf("%d %d", &s, &t);
+            graph[s][t] = graph[t][s] = 1;
+            break;
+        case 2:
+            printf("Enter two vertices to remove an edge: ");
+            scanf("%d %d", &s, &t);
+            graph[s][t] = graph[t][s] = 0;
+            break;
+        case 3:
+            printf("The adjacency matrix:\n");
+            for (int i = 0; i < v; i++) {
+                for (int j = 0; j < v; j++)
+                    printf("%d ", graph[i][j]);
+                printf("\n");
+            }
+            break;
+        case 4:
+            printf("The BFS Sequence: ");
+                bfs();
+            break;
+        case 5:
+            exit(0);
+            break;
+        default:
+            break;
+        }
+    }
 }
