@@ -1,4 +1,3 @@
-// TODO: Update question
 /*
 Batch 3: Lab-exam program
 Problem:
@@ -32,7 +31,6 @@ struct node* insert(struct node* head, int row, int col, int value) {
     return head;
 }
 
-// TODO: find bug
 struct node* matrix_sum(struct node* head1, struct node* head2) {
     for (struct node* i = head1; i != NULL; i = i->next) {
         for (struct node* j = head2; j != NULL; j = j->next) {
@@ -45,18 +43,19 @@ struct node* matrix_sum(struct node* head1, struct node* head2) {
 }
 
 struct node* transpose(struct node* head) {
+    struct node* head_t = NULL;
+
     for (struct node* temp = head; temp != NULL; temp = temp->next) {
-        int t = temp->row;
-        temp->row = temp->col;
-        temp->col = t;
+        head_t = insert(head_t, temp->col, temp->row, temp->value);
     }
-    return head;
+    return head_t;
 }
 
 void display(struct node* head, int row) {
     for (int i = 0; i < row; i++) {
-        for (struct node* temp = head; temp != NULL && temp->row == i; temp = temp->next) {
-            printf("%d ", temp->value);
+        for (struct node* temp = head; temp != NULL; temp = temp->next) {
+            if (temp->row == i)
+                printf("%0.2d ", temp->value);
         }
         printf("\n");
     }
@@ -94,5 +93,6 @@ void main() {
 
     printf("Sum of matrices: \n");
     struct node* sum = matrix_sum(head1, head2);
+
     display(sum, r);
 }
