@@ -81,7 +81,7 @@ void main() {
             break;
         case 4:
             printf("The DFS Sequence: ");
-            dfs(0);
+            dfs();
             break;
         case 5:
             exit(0);
